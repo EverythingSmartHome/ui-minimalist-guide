@@ -1,0 +1,80 @@
+title: "Home"
+path: "home"
+cards:
+  - type: "custom:button-card"
+    template: "card_esh_welcome"
+    triggers_update: "input_boolean.minimalist_dropdown"
+    variables:
+      ulm_card_esh_welcome_collapse: input_boolean.minimalist_dropdown
+      ulm_weather: "weather.openweathermap"
+      entity_1:
+        nav: "bathroom"
+        icon: "mdi:bathtub"
+        name: "Bathroom"
+        color: "blue"
+      entity_2:
+        nav: "lights"
+        icon: "mdi:lightbulb"
+        name: "Lights"
+        color: "yellow"
+      entity_3:
+        nav: "security"
+        icon: "mdi:shield"
+        name: Secure
+        color: "green"
+      entity_4:
+        nav: "network"
+        icon: "mdi:nas"
+        name: Lab
+        color: "purple"
+      entity_5:
+        nav: "network"
+        icon: "mdi:flask"
+        name: Lab
+        color: "red"
+
+  - type: horizontal-stack
+    cards:
+      - type: 'custom:button-card'
+        template: card_person
+        variables:
+          ulm_card_person_entity: person.lewis
+          ulm_card_person_use_entity_picture: true
+          ulm_card_person_zone1: zone.work
+          ulm_card_person_zone2: zone.school
+      - type: 'custom:button-card'
+        template: card_person
+        variables:
+          ulm_card_person_entity: person.sarah
+          ulm_card_person_use_entity_picture: true
+          ulm_card_person_zone1: zone.work
+          ulm_card_person_zone2: zone.school
+
+  - type: 'custom:button-card'
+    template: card_title
+    name: Rooms
+
+  - type: horizontal-stack
+    cards:
+      - type: 'custom:button-card'
+        template:
+          - card_esh_room
+          - yellow_on
+        name: Bathroom
+        entity: light.group_lights
+        icon: mdi:bathtub
+        tap_action:
+          action: navigate
+          navigation_path: 'bathroom'
+        label: '[[[ return states["sensor.openweathermap_temperature"].state + "°C" ]]]'
+      - type: 'custom:button-card'
+        template:
+          - card_esh_room
+          - yellow_on
+        name: Kitchen
+        entity: light.group_lights
+        icon: mdi:knife
+        tap_action:
+          action: navigate
+          navigation_path: 'kitchen'
+        label: '[[[ return states["sensor.openweathermap_temperature"].state + "°C" ]]]'

@@ -1,0 +1,87 @@
+title: "Bathroom"
+path: "bathroom"
+cards:
+  - type: 'custom:button-card'
+    template: chip_back
+    variables:
+      ulm_chip_back_path: home
+
+  - type: 'custom:button-card'
+    template: card_title
+    name: Bathroom
+
+  - type: horizontal-stack
+    cards:
+      - type: 'custom:button-card'
+        template: card_graph
+        variables:
+          ulm_card_graph_color: "var(--google-blue)"
+          ulm_card_graph_name: Temperature
+          ulm_card_graph_entity: sensor.openweathermap_temperature
+          ulm_card_graph_type: fill
+          ulm_card_graph_hours: 24
+      - type: 'custom:button-card'
+        template: card_graph
+        variables:
+          ulm_card_graph_color: "var(--google-red)"
+          ulm_card_graph_name: Humidity
+          ulm_card_graph_entity: sensor.openweathermap_humidity
+          ulm_card_graph_type: fill
+          ulm_card_graph_hours: 24
+
+  - type: 'custom:button-card'
+    template: card_title
+    label: "Devices"
+
+  - type: horizontal-stack
+    cards:
+      - type: "custom:button-card"
+        template: card_light
+        entity: light.group_lights
+        variables:
+          ulm_card_light_enable_slider: true
+          ulm_card_light_enable_color: true
+          ulm_card_light_force_background_color: true
+          ulm_card_light_enable_collapse: true
+
+      - type: 'custom:button-card'
+        template: card_power_outlet
+        entity: fan.bathroom
+        name: Fan
+
+  - type: "custom:button-card"
+    template: card_cover
+    entity: cover.bathroom_blind
+    variables:
+      ulm_card_cover_enable_controls: true
+      ulm_card_cover_enable_slider: true
+      ulm_card_cover_display_left_right: true
+
+  - type: 'custom:button-card'
+    template: card_title
+    label: "Sensors"
+
+  - type: horizontal-stack
+    cards:
+      - type: 'custom:button-card'
+        template: card_binary_sensor_alert
+        variables:
+          - ulm_card_binary_sensor_alert: true
+        entity: binary_sensor.aqara_fp1_presence
+        show_last_changed: true
+        name: "Presence"
+      - type: 'custom:button-card'
+        template: card_battery
+        entity: sensor.livingroom_trv_battery
+        variables:
+            ulm_card_battery_battery_level_danger: 20
+            ulm_card_battery_battery_level_warning: 50
+        name: TRV
+
+
+
+
+
+
+
+
